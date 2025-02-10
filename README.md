@@ -21,3 +21,27 @@ git clone https://github.com/ai-chat-bot.git
 
 cd ai-chat-bot
 
+# Create a virtual environment:
+    python -m venv venv
+    source venv/bin/activate   # For Linux/macOS
+    venv\Scripts\activate   
+# Install dependencies
+     pip install -r requirements.txt
+
+# run server 
+    uvicorn server:app --reload
+
+# API Endpoint
+       POST /chat
+           request 
+       
+           {
+              "message": "Hello, AI!"
+           }
+           
+           Response
+           
+           {
+              "reply": "Hello! How can I assist you today?"
+           }
+           
