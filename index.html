@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
-    <title>Penguin </title>
+    <title>Penguin</title>
     <link rel="icon" type="image/x-icon" href="statics/images/pentagram.webp">
     <style>
         body {
@@ -13,30 +12,33 @@
             font-family: Arial, sans-serif;
             text-align: center;
             background-image: url('statics/images/view-3d-penguin-bird-with-nature-landscape\ \(1\).jpg');
-            background-size: 100% 130%; /* Width 50%, Height 50% */
-             background-repeat: no-repeat;
-
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .github-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
         }
         .chat-container {
+            width: 90%;
             max-width: 600px;
-            margin: auto;
             padding: 20px;
             background: #1d1a1a;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-      
+            margin-top: 60px;
         }
-        .user-message {
-            text-align: right;
-            background-color: #0078ff;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 10px;
-            display: inline-block;
-            max-width: 70%;
-            margin-left: 100; /* Pushes the message to the right */
-        }
-
         .chat-box {
             height: 300px;
             overflow-y: auto;
@@ -46,6 +48,7 @@
         }
         .input-container {
             display: flex;
+            gap: 10px;
             padding: 10px;
         }
         input {
@@ -60,14 +63,22 @@
             color: white;
             border: none;
             padding: 10px 15px;
-            margin-left: 10px;
             border-radius: 5px;
             cursor: pointer;
+        }
+        .user-message {
+            text-align: right;
+            background-color: #0078ff;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 70%;
         }
     </style>
 </head>
 <body>
-<a style="margin-left: 1000px;color:white" href="https://github.com/roshasjohnson/ai-chat-bot"> Github</a>
+    <a class="github-link" href="https://github.com/roshasjohnson/ai-chat-bot">GitHub</a>
     <h1>Ask Penguin, Know More.🐧</h1>
     <div class="chat-container">
         <div class="chat-box" id="chat-box"></div>
@@ -79,10 +90,10 @@
     
     <script>
         document.getElementById("user-input").addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            sendMessage(); 
-        }
-    });
+            if (event.key === "Enter") {
+                sendMessage(); 
+            }
+        });
 
         async function sendMessage() {
             let userInput = document.getElementById("user-input").value;
@@ -102,7 +113,6 @@
             });
 
             let result = await response.json();
-
             document.querySelector(".chat-box").lastElementChild.remove();
             chatBox.innerHTML += `<p><strong></strong> ${result.reply}</p>`;
             chatBox.scrollTop = chatBox.scrollHeight;
