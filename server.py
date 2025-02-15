@@ -5,7 +5,7 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 load_dotenv()
-
+import http
 
 API_KEY = os.getenv("API_KEY")
 BASE_URL = os.getenv("BASE_URL")
@@ -54,5 +54,6 @@ async def chat(request: ChatRequest):
         return  {"reply":response}
 
     except: 
-        response = "Error occured try again"
-        return {"reply":response}
+        print(http.HTTPStatus.NOT_FOUND)
+        # response = ""
+        return {"reply":"Error occured please try again"}
