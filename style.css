@@ -1,0 +1,276 @@
+:root {
+    --bg-main: #0a0a0f;
+    --bg-header: #181824;
+    --bg-chat: #181824;
+    --bg-container: #232336;
+    --bg-input: #232336;
+    --bg-user: linear-gradient(90deg, #2563eb 0%, #60a5fa 100%);
+    --bg-bot: #232336;
+    --text-main: #f3f4f6;
+    --text-secondary: #a1a1aa;
+    --accent: #2563eb;
+    --accent-hover: #1e40af;
+    --shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.18);
+}
+body {
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.3s;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-header);
+    padding: 0 32px;
+    height: 64px;
+    border-bottom: 1px solid #232336;
+    box-shadow: 0 2px 8px rgba(31, 38, 135, 0.04);
+}
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: 1px;
+}
+.logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: none;
+    object-fit: contain;
+    border: none;
+    box-shadow: var(--shadow);
+    background-color: transparent;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.7rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.2s, background 0.2s;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+.theme-toggle:hover {
+    color: var(--accent);
+    background: rgba(100,100,100,0.07);
+}
+.github-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.2s;
+    margin-left: 12px;
+}
+.github-link:hover {
+    color: var(--accent);
+}
+.main-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.chat-container {
+    width: 100%;
+    max-width: 720px;
+    height: 80vh;
+    min-height: 520px;
+    background: var(--bg-container);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    margin: 40px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #232336;
+    position: relative;
+}
+
+.chat-box {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    background: var(--bg-chat);
+    padding: 40px 32px 24px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    scrollbar-width: thin;
+    scrollbar-color: #232336 var(--bg-chat);
+    transition: background 0.3s;
+    min-height: 0; /* Fix for flexbox overflow */
+    max-height: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.input-container {
+    display: flex;
+    gap: 14px;
+    padding: 22px 32px;
+    background: var(--bg-container);
+    border-top: 1px solid #232336;
+    /* Ensure input stays at the bottom */
+    flex-shrink: 0;
+}
+input {
+    flex: 1;
+    padding: 18px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    background: var(--bg-input);
+    color: var(--text-main);
+    outline: none;
+    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(31, 38, 135, 0.04);
+}
+input:focus {
+    background: var(--bg-chat);
+}
+button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 0 28px;
+    border-radius: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px) scale(1.04);
+}
+.user-message {
+    align-self: flex-end;
+    background: var(--bg-user);
+    color: #fff;
+    padding: 16px 22px;
+    border-radius: 18px 18px 6px 18px;
+    max-width: 75%;
+    font-size: 17px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: inherit;
+    letter-spacing: 0.1px;
+    animation: fadeInRight 0.3s;
+}
+.bot-message {
+    align-self: flex-start;
+    background: var(--bg-bot);
+    color: var(--text-main);
+    padding: 16px 22px;
+    border-radius: 18px 18px 18px 6px;
+    max-width: 75%;
+    font-size: 17px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: inherit;
+    animation: fadeInLeft 0.3s;
+}
+.thinking-message {
+    align-self: flex-start;
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 16px;
+    margin-bottom: 2px;
+    padding-left: 8px;
+}
+.footer {
+    width: 100%;
+    text-align: center;
+    padding: 22px 0 16px 0;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    background: transparent;
+    letter-spacing: 0.2px;
+}
+h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-top: 54px;
+    margin-bottom: 0;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 8px rgba(96, 165, 250, 0.08);
+}
+
+/* Markdown/HTML styling for bot-message */
+.bot-message pre, #output pre {
+    background: #181824;
+    color: #60a5fa;
+    padding: 14px;
+    border-radius: 10px;
+    margin: 12px 0;
+    overflow-x: auto;
+    font-size: 15px;
+    font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+    border: 1px solid #232336;
+}
+.bot-message code, #output code {
+    background: #232336;
+    color: #60a5fa;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+}
+.bot-message strong, #output strong {
+    color: #2563eb;
+    font-weight: bold;
+}
+.bot-message ul, #output ul {
+    margin: 10px 0 10px 24px;
+    padding: 0;
+}
+.bot-message li, #output li {
+    margin-bottom: 6px;
+    list-style-type: disc;
+    font-size: 16px;
+}
+.bot-message h2, #output h2 {
+    color: #19c37d;
+    font-size: 1.25em;
+    margin: 14px 0 10px 0;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+.bot-message p, #output p {
+    margin: 10px 0;
+    line-height: 1.7;
+    font-size: 16px;
+}
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-30px);}
+    to { opacity: 1; transform: translateX(0);}
+}
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(30px);}
+    to { opacity: 1; transform: translateX(0);}
+}

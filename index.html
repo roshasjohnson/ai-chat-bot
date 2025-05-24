@@ -3,120 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penguin</title>
-    <link rel="icon" type="image/x-icon" href="statics/images/pentagram.webp">
-    <style>
-        body {
-            background-color: #121212;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-image: url('statics/images/view-3d-penguin-bird-with-nature-landscape\ \(1\).jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .github-link {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-        }
-        .chat-container {
-            width: 90%;
-            max-width: 600px;
-            padding: 20px;
-            background: #1d1a1a;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-            margin-top: 60px;
-        }
-        .chat-box {
-            height: 300px;
-            overflow-y: auto;
-            border-bottom: 1px solid #444;
-            padding: 10px;
-            text-align: left;
-        }
-        .input-container {
-            display: flex;
-            gap: 10px;
-            padding: 10px;
-        }
-        input {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        button {
-            background: #000000;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .user-message {
-            text-align: right;
-            background-color: #0078ff;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 10px;
-            display: inline-block;
-            max-width: 70%;
-        }
-    </style>
+    <title>🐧 Penguin AI </title>
+    <meta name="description" content="Penguin AI - Your friendly AI assistant for quick answers and fun conversations.">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <a class="github-link" href="https://github.com/roshasjohnson/ai-chat-bot">GitHub</a>
-    <h1>Ask Penguin, Know More.🐧</h1>
-    <div class="chat-container">
-        <div class="chat-box" id="chat-box"></div>
-        <div class="input-container">
-            <input type="text" id="user-input" placeholder="How can I help you today?">
-            <button onclick="sendMessage()">Send</button>
+    <header class="header">
+        <div class="header-title">
+            <!-- SVG Penguin AI Logo: stylized penguin with "AI" -->
+            <span class="logo" style="padding:0; background:none; border:none;">
+                <svg width="40" height="40" viewBox="0 0 64 64" fill="none">
+                    <!-- Penguin body -->
+                    <ellipse cx="32" cy="38" rx="14" ry="16" fill="#fff"/>
+                    <!-- Penguin head -->
+                    <ellipse cx="32" cy="24" rx="10" ry="10" fill="#22223b"/>
+                    <!-- Face mask -->
+                    <ellipse cx="32" cy="28" rx="8" ry="7" fill="#fff"/>
+                    <!-- Eyes white -->
+                    <ellipse cx="28" cy="26" rx="2" ry="2.5" fill="#fff"/>
+                    <ellipse cx="36" cy="26" rx="2" ry="2.5" fill="#fff"/>
+                    <!-- Eyes black -->
+                    <ellipse cx="28" cy="27" rx="0.8" ry="1.2" fill="#22223b"/>
+                    <ellipse cx="36" cy="27" rx="0.8" ry="1.2" fill="#22223b"/>
+                    <!-- Beak -->
+                    <polygon points="31,30 33,30 32,32" fill="#fbbf24"/>
+                    <!-- Cheeks -->
+                    <ellipse cx="26" cy="30" rx="1.2" ry="0.7" fill="#fbbf24" opacity="0.3"/>
+                    <ellipse cx="38" cy="30" rx="1.2" ry="0.7" fill="#fbbf24" opacity="0.3"/>
+                    <!-- Wings -->
+                    <ellipse cx="19" cy="38" rx="3" ry="8" fill="#22223b" transform="rotate(-15 19 38)"/>
+                    <ellipse cx="45" cy="38" rx="3" ry="8" fill="#22223b" transform="rotate(15 45 38)"/>
+                    <!-- "AI" text on belly -->
+                    <text x="32" y="46" text-anchor="middle" font-size="7" font-family="Segoe UI, Arial, sans-serif" fill="#2563eb" font-weight="bold">AI</text>
+                </svg>
+            </span>
+            <span>Penguin AI</span>
         </div>
-    </div>
-    
-    <script>
-        document.getElementById("user-input").addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-                sendMessage(); 
-            }
-        });
-
-        async function sendMessage() {
-            let userInput = document.getElementById("user-input").value;
-            if (!userInput.trim()) return;
-
-            let chatBox = document.getElementById("chat-box");
-            chatBox.innerHTML += `<p class="user-message"><strong>You:</strong> ${userInput}</p>`;
-            document.getElementById("user-input").value = "";
-
-            chatBox.innerHTML += `<p><em>Thinking...</em></p>`;
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            let response = await fetch("https://ai-chat-bot-ckkn.onrender.com/chat", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message: userInput })
-            });
-
-            let result = await response.json();
-            document.querySelector(".chat-box").lastElementChild.remove();
-            chatBox.innerHTML += `<p><strong></strong> ${result.reply}</p>`;
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-    </script>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <!-- <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">🌙</button> -->
+            <a class="github-link" href="https://github.com/roshasjohnson/ai-chat-bot" target="_blank">GitHub</a>
+        </div>
+    </header>
+    <main class="main-content">
+        <div class="chat-container">
+            <div class="chat-box" id="chat-box"></div>
+            <form class="input-container" onsubmit="sendMessage(); return false;">
+                <input type="text" id="user-input" autocomplete="off" placeholder="Send a message...">
+                <button type="submit" aria-label="Send">➤</button>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <span>Ask Penguin, Know More.🐧</span>
+    </footer>
+    <script src="main.js"></script>
 </body>
 </html>

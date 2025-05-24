@@ -1,8 +1,6 @@
 
 fastapi==0.115.8
-openapi==2.0.0
-openai
-pydantic==2.10.6
-pydantic_core==2.27.2
+
 python-dotenv==1.0.1
 uvicorn==0.34.0
+mistralai
