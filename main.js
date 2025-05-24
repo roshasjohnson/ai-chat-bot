@@ -43,17 +43,28 @@ async function sendMessage() {
     chatBox.innerHTML += `<div class="thinking-message">Penguin is thinking...</div>`;
     chatBox.scrollTop = chatBox.scrollHeight;
 
-    let response = await fetch("http://localhost:8000/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userInput })
-    });
+    try {
+        let response = await fetch("https://penguin-ai.onrender.com/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: userInput })
+        });
 
-    let result = await response.json();
-    document.querySelector(".chat-box").lastElementChild.remove();
-    // Modern UI: Use bot-message bubble
-    // Render Markdown/HTML in the bot message
-    chatBox.innerHTML += `<div class="bot-message">${renderMarkdown(result.reply)}</div>`;
+        let result = await response.json();
+        document.querySelector(".chat-box").lastElementChild.remove();
+
+        // If API returns error or no reply
+        if (!response.ok || !result.reply) {
+            chatBox.innerHTML += `<div class="bot-message">Sorry, something went wrong. Please try again later.</div>`;
+        } else {
+            // Modern UI: Use bot-message bubble
+            // Render Markdown/HTML in the bot message
+            chatBox.innerHTML += `<div class="bot-message">${renderMarkdown(result.reply)}</div>`;
+        }
+    } catch (error) {
+        document.querySelector(".chat-box").lastElementChild.remove();
+        chatBox.innerHTML += `<div class="bot-message">Sorry, I couldn't reach the server. Please check your connection or try again later.</div>`;
+    }
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
